@@ -42,7 +42,7 @@ export function DocumentLoader({ onLoad, onLoadSample }: DocumentLoaderProps) {
           <h1 className="text-4xl font-serif font-light text-stone-800 dark:text-stone-100 tracking-tight">
             zooomin
           </h1>
-          <p className="mt-3 text-stone-500 dark:text-stone-400 text-lg">
+          <p className="mt-3 text-stone-600 dark:text-stone-300 text-lg">
             Semantic zoom for text. Start zoomed out, drill in where it matters.
           </p>
         </div>
@@ -57,7 +57,7 @@ export function DocumentLoader({ onLoad, onLoadSample }: DocumentLoaderProps) {
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
         >
-          <p className="text-stone-500 dark:text-stone-400 mb-4">
+          <p className="text-stone-600 dark:text-stone-300 mb-4">
             Drop a ZoomDoc JSON file here
           </p>
           <button
@@ -87,7 +87,7 @@ export function DocumentLoader({ onLoad, onLoadSample }: DocumentLoaderProps) {
             <div className="w-full border-t border-stone-200 dark:border-stone-700" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="bg-stone-50 dark:bg-stone-900 px-3 text-stone-400 dark:text-stone-500">or</span>
+            <span className="bg-stone-50 dark:bg-stone-900 px-3 text-stone-500 dark:text-stone-400">or</span>
           </div>
         </div>
 
