@@ -202,7 +202,11 @@ function SegmentedParagraph({
         const isHovered = hoveredIndex === i && !isChildExpanded;
         const childMaxLevel = getMaxLevel(child);
         const childFullText = child.levels[String(childMaxLevel)] || child.levels['1'] || '';
-        const childCompressionRatio = getCompressionRatio(child, 0);
+        const segmentWords = wordCount(segment);
+        const childFullWords = wordCount(childFullText);
+        const childCompressionRatio = segmentWords > 0 && childFullWords > segmentWords
+          ? Math.round(childFullWords / segmentWords)
+          : null;
 
         return (
           <div key={child.id} data-node-id={child.id}>
@@ -324,7 +328,6 @@ export function ZoomNodeComponent({
   };
 
   const currentText = node.levels[String(nodeState.level)] || node.levels['0'] || '';
-  const levelLabel = getLevelLabel(nodeState.level, maxLevel);
   const isExpanded = nodeState.level > 0 || anyChildExpanded;
 
   const showTrail = nodeState.level > 0;
@@ -353,14 +356,9 @@ export function ZoomNodeComponent({
           >
             {node.title}
           </h3>
-          <span className="text-sm text-stone-500 dark:text-stone-400 font-mono">
-            {levelLabel}
+          <span className="text-sm text-stone-500 dark:text-stone-400 font-mono tabular-nums">
+            {compressionRatio && compressionRatio > 1 ? `${compressionRatio}x` : 'full text'}
           </span>
-          {compressionRatio && compressionRatio > 1 && (
-            <span className="text-sm text-stone-500 dark:text-stone-400 font-mono tabular-nums">
-              {compressionRatio}x
-            </span>
-          )}
           {isExpanded && (
             <span className="text-sm text-stone-500 dark:text-stone-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">
               ◂ collapse
